@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BrainFurnicate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+    <script type="text/javascript" src="js/brainfuck-compiler.js"></script>
+    <script type="text/javascript" src="js/BrainFurnicateApp.js"></script>
+</head>
+<body>
+<div id="global" ng-app="brainfurnicate" ng-controller="MainController">
+    <nav>
+        <ul id="menu-container" class="mast">
+            <li id="run-code" class="menu-item btn" ng-click="run()" ng-class="{disabled : compiler.isRunning()}">
+                <span class="glyphicon glyphicon-play"></span>
+            </li>
+            <li id="stop-code" class="menu-item btn" ng-click="stop()" ng-class="{disabled : !compiler.isRunning()}">
+                <span class="glyphicon glyphicon-stop"></span>
+            </li>
+            <li id="examples" class="menu-item pull-right">
+                <select ng-model="selectedExample">
+                    <option value=0>Quine</option>
+                    <option value=1>Bottles</option>
+                    <option value=2>E-mail</option>
+                    <option value=3>Fibonacci</option>
+                </select>
+            </li>
+
+            <li id="examples-code" class="menu-item btn pull-right">
+                <span class="glyphicon glyphicon-save" ng-click="loadExample()"></span>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="ide" class="mast">
+        <div id="code" class="ide-part col-xs-12">
+            <div class="header">
+                <h3>Code</h3>
+                <h5>[ ] < > + - , .</h5>
+                <div class="extra">{{code.length}}</div>
+            </div>
+            <textarea id="code-input" ng-model="code"></textarea>
+
+        </div>
+        <div id="output" class="ide-part col-xs-12 col-md-6">
+            <div class="header">
+                <h3>Output</h3>
+                <h5>A B C D a b c d</h5>
+                <div class="extra" ng-show="details.time != undefined">{{details.time / 1000}} s</div>
+
+            </div>
+            <textarea id="text" ng-model="result" readonly></textarea>
+        </div>
+        <div id="debug" class="ide-part col-xs-12 col-md-6">
+            <div class="header">
+                <h3>Debug</h3>
+                <h5>$ @ ! # ~ ^ " %</h5>
+                <div class="extra" ng-show="details.time != undefined">{{details.steps}} étapes</div>
+            </div>
+
+            <div id="debug-container">
+                <div id="debug-table">
+                    <div id="debug-caption" class="debug-item">
+                        <span id="debug-address" class="debug-col">Adresse</span>
+                        <span id="debug-value" class="debug-col">Valeur</span>
+                        <span id="debug-erreur" class="debug-col" ng-if="">Erreur</span>
+                        <span id="debug-character" class="debug-col">Caractère</span>
+                    </div>
+                    <div ng-repeat="item in debugLog" class="debug-item">
+                        <span class="debug-col">{{item.addr}}</span>
+                        <span class="debug-col" ng-if="item.val != undefined">{{item.val}}</span>
+                        <span class="debug-col" ng-if="item.type != undefined">{{item.type}}</span>
+                        <span class="debug-col">{{item.char}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
