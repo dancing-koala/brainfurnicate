@@ -34,17 +34,16 @@ app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeo
             default:
                 break;
         }
-    }
+    };
 
     $scope.run = function () {
         var codeToRun = $scope.code.trim().replace(/[\t\n\r]/g, '');
         var errors = $scope.compiler.getErrors(codeToRun);
 
         if (errors.length > 0) {
-            alert("Il existe des erreurs dans le code. Voir la section 'Debug'.")
+            alert("There are errors in the code. See \"Debug\" section.");
             $scope.debugLog = errors;
-        }
-        else {
+        } else {
             $scope.compiler.init(codeToRun);
             $scope.compiler.run();
             $scope.checkCompilerStatus();
@@ -52,8 +51,7 @@ app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeo
     };
 
     $scope.stop = function () {
-        if ($scope.compiler.isRunning())
-            $scope.compiler.interrupt();
+        if ($scope.compiler.isRunning()) $scope.compiler.interrupt();
     };
 
     $scope.checkCompilerStatus = function () {
@@ -62,8 +60,7 @@ app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeo
                 $scope.result = $scope.compiler.getOutput();
                 $scope.debugLog = $scope.compiler.getDebug();
                 $scope.details = $scope.compiler.getDetails();
-            }
-            else {
+            } else {
                 $scope.checkCompilerStatus();
             }
         }, 200);

@@ -24,7 +24,7 @@
                 <select ng-model="selectedExample">
                     <option value=0>Quine</option>
                     <option value=1>Bottles</option>
-                    <option value=2>E-mail</option>
+                    <option value=2>Email</option>
                     <option value=3>Fibonacci</option>
                 </select>
             </li>
@@ -58,16 +58,16 @@
             <div class="header">
                 <h3>Debug</h3>
                 <h5>$ @ ! # ~ ^ " %</h5>
-                <div class="extra" ng-show="details.time != undefined">{{details.steps}} étapes</div>
+                <div class="extra" ng-show="details.time != undefined">{{details.steps}} steps</div>
             </div>
 
             <div id="debug-container">
                 <div id="debug-table">
                     <div id="debug-caption" class="debug-item">
-                        <span id="debug-address" class="debug-col">Adresse</span>
-                        <span id="debug-value" class="debug-col">Valeur</span>
-                        <span id="debug-erreur" class="debug-col" ng-if="">Erreur</span>
-                        <span id="debug-character" class="debug-col">Caractère</span>
+                        <span id="debug-address" class="debug-col">Index</span>
+                        <span id="debug-value" class="debug-col">Value</span>
+                        <span id="debug-erreur" class="debug-col" ng-if="">Error</span>
+                        <span id="debug-character" class="debug-col">Character</span>
                     </div>
                     <div ng-repeat="item in debugLog" class="debug-item">
                         <span class="debug-col">{{item.addr}}</span>
