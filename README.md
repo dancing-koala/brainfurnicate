@@ -5,5 +5,5 @@
 
 [More about Brainfuck.](https://en.wikipedia.org/wiki/Brainfuck)
 
-BrainFurnicate is a Javascript interpreter for the Brainfuck programming language. Its core is written is pure Javascript
+BrainFurnicate is a Javascript interpreter for the Brainfuck programming language. Its core is written in pure Javascript
 while its UI uses AngularJS v1.3.16 and Bootstrap.
